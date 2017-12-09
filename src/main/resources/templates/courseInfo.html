@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Course</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar" style="background-color:#563d7c;">
+    <a class="navbar-brand" href="/" aria-label="Bootstrap">G
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
+            <li class="nav-item active">
+                <a class="nav-link" href="/teacher">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Log out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">My Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/"></a>
+            </li>
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for courses" name="srch-term" id="srch-term"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h4 th:text="${course.englishName}"></h4>
+    <p class="lead">
+    </p>
+    <hr class="my-4"/>
+
+    <p class="lead"></p>
+
+    <table class="table table-bordered table-striped">
+        <col width="230"/>
+        <tr>
+            <td>Danish Name</td>
+            <td th:text="${course.danishName}">Danish Name ...</td>
+        </tr>
+        <tr>
+            <td>English Name</td>
+            <td th:text="${course.englishName}">English Name ...</td>
+        </tr>
+        <tr>
+            <td>Study Programme</td>
+            <td th:text="${course.studyProgramme}">Study Programme ...</td>
+        </tr>
+        <tr>
+            <td>ECTS</td>
+            <td th:text="${course.ects}">ECTS ...</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td th:text="${course.type}">Mandatory? ...</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td th:text="${course.language}">Language ...</td>
+        </tr>
+        <tr>
+            <td>Minimum Students</td>
+            <td th:text="${course.minNumber}">Minimum Students ...</td>
+        </tr>
+        <tr>
+            <td>Expected Students</td>
+            <td th:text="${course.expNumber}">Expected Students ...</td>
+        </tr>
+        <tr>
+            <td>Maximum Students</td>
+            <td th:text="${course.maxNumber}">Maximum Students ...</td>
+        </tr>
+        <tr>
+            <td>Prerequisites</td>
+            <td th:text="${course.prereq}">Prerequisites ...</td>
+        </tr>
+        <tr>
+            <td>Outcome</td>
+            <td th:text="${course.outcome}">Outcome ...</td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td th:text="${course.content}">Content ...</td>
+        </tr>
+        <tr>
+            <td>Learning Activities</td>
+            <td th:text="${course.activities}">Learning Activities ...</td>
+        </tr>
+        <tr>
+            <td>Exam Form</td>
+            <td th:text="${course.exam}">Exam Form ...</td>
+        </tr>
+        <tr>
+            <td>Teacher/s</td>
+            <td th:each="teacher : ${course.teacher}" th:text="${teacher.name}">Teachers ...</td>
+        </tr>
+    </table>
+    <!--<input type="button" class="btn btn-dark" value="Go Back" onclick="window.location.href='/student/showcourses'" />-->
+    <a href="/student" class="btn btn-warning">Go Back</a>
+    <a href="/" class="btn btn-success">Apply Now</a>
+</div>
+</body>
+</html>

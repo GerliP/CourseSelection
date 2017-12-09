@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar" style="background-color:#563d7c;" >
+    <a class="navbar-brand" href="/" aria-label="Bootstrap">G
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Log out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">My Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/"></a>
+            </li>
+            <form class="navbar-form" role="search" th:action="@{/course/search}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for courses" name="srch-term" id="srch-term"
+                    />
+                    <div class="input-group-btn">
+                    <a class="input-group-btn" href="#" th:href="@{'/course/search'}">
+                        <button class="btn  btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button></a>
+                    </div>
+                </div>
+            </form>
+
+        </ul>
+    </div>
+    <div class="gmail">
+        <a class="fb p-2 " href="http://www.google.com" target="_blank"> <img  src="google.png" alt="Google" style="height: 25px;
+                outline: none; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; text-decoration: none;"
+        />
+            <span class="fa fa-facebook"></span>
+        </a>
+    </div>
+    <div class="facebook">
+        <a class="fb p-2 " href="http://www.facebook.com" target="_blank"> <img  src="http://go.komfo.com/rs/752-BWV-746/images/facebook-logo-button.png" alt="Facebook" style="height: 20px;
+                outline: none; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; text-decoration: none;"
+        />
+            <span class="fa fa-facebook"></span>
+        </a>
+    </div>
+</nav>
+<table class="table table-bordered table-striped">
+    <thead>
+    <h1>List of available courses</h1>
+    <tr>
+        <td>Name</td>
+        <td>Study Program</td>
+        <td>ECTS</td>
+        <td>Type</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${courseList== null || courseList.empty}">
+        <td colspan="7">No Courses</td>
+    </tr>
+    <tr th:each="course : ${courseList}">
+        <!-- <form action="#" th:action="@{/edit}" th:object="${user}" method="post">-->
+        <!--<td th:text="${course.id}">1</td>-->
+        <!--<td><a href="view.html" th:href="@{'/' + ${task.id}}" th:text="${task.title}">Title ...</a></td>-->
+
+        <td name="name" th:text="${course.englishName}" >Name...</td>
+        <td name="studyProgram" th:text="${course.studyProgramme}">Study Program...</td>
+        <td name="ects" th:text="${course.ects}">ECTS...</td>
+        <td name="type" th:text="${course.type}">Type...</td>
+        <td> <a href="#" th:href="@{'/course/more?id='} +${course.id}" >
+            <button id="more" class="btn btn-default" > More
+            </button></a></td>
+        <td> <a href="#" th:href="@{'/course/signup?id='} +${course.id}" >
+            <button id="signup" class="btn btn-default" > Sign up
+            </button></a></td>
+
+        <!--<td th:text="${#calendars.format(task.dueTo)}">July 11, 2012 2:17:16 PM CDT</td>-->
+
+    </tr>
+    <a class="btn btn-social-icon btn-facebook">
+        <span class="fa fa-facebook"></span>
+    </a>
+
+    </tbody>
+</table>
+
+<a href="/">
+    <button type="button" class="btn btn-dark" >Go Back</button>
+</a>
+</body>
+</html>
